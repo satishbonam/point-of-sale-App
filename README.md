@@ -25,6 +25,9 @@ description: Basic POS application for small scale Business
 | category | item | price | stock\(kg/items\) |
 | :--- | :--- | :--- | :--- |
 | Lentils | dal | 200 | 2000 |
+###Overview of POS Application:
 
 ![Alt Text](42r49j.gif)
+![Alt Text](42r4gh.gif)
+![Alt Text](42r4kq.gif)
 
