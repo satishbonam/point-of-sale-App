@@ -1,18 +1,14 @@
 category,item,price,stocks,quantity
-lentils,dal,100,2000,1
-buicuits,crack-jack,200,2000,1
-buicuits,marie-gold,300,2000,1
-buicuits,parle,400,2000,1
-buicuits,britania,500,2000,1
+buicuits,crack-jack,30,41,1
+buicuits,marie-gold,300,28,1
+buicuits,britania,500,40,1
 buicuits,milk-buicuits,50,2000,1
 buicuits,treat,60,2000,1
 lentils,rice,90,2000,1
 lentils,ground-nuts,250,2000,1
 lentils,urd dal,350,2000,1
-lentils,moog dal,280,2000,1
 lentils,black gram,290,2000,1
-lentils,green gram,270,2000,1
-lentils,bengal gram,220,2000,1
+lentils,green gram,270,1999,1
 chocolates,dairy milk,210,2000,1
 chocolates,5 star,110,2000,1
 chocolates,kit-kat,120,2000,1
