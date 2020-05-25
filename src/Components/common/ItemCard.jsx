@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 const ItemCard = (props) => {
   const classes = useStyles();
   const { name, price, onClick, qty, isBill } = props;
-  const [isAdded, setStatus] = useState(isBill);
+  const [isAdded, setStatus] = useState(false);
   return (
     <Paper className={classes.root}>
       <Paper className={classes.detailsTitle}>{name}</Paper>
