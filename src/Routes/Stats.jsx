@@ -1,8 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
+import DisplayChart from "../Components/DisplayChart";
 
 const Stats = () => {
-  return <div>Stats</div>;
+  return (
+    <div>
+      <DisplayChart />
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({});
