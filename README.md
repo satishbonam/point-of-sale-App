@@ -26,5 +26,5 @@ description: Basic POS application for small scale Business
 | :--- | :--- | :--- | :--- |
 | Lentils | dal | 200 | 2000 |
 
-
+![Alt Text](https://giphy.com/gifs/KeX19iqrCclDiTO88i)
 
