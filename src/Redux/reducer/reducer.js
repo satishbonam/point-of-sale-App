@@ -9,6 +9,12 @@ import {
   GENERATE_BILL_REQUEST,
   GENERATE_BILL_SUCCESS,
   BILL_STATUS,
+  GET_ORDER_DATA_SUCCESS,
+  GET_ORDER_DATA_REQUEST,
+  GET_ORDER_DATA_FAILURE,
+  GET_BILLS_FAILURE,
+  GET_BILLS_REQUEST,
+  GET_BILLS_SUCCESS,
 } from "./actionTypes";
 
 const initialState = {
@@ -17,6 +23,8 @@ const initialState = {
   totalBill: 0,
   isBill: false,
   isloading: false,
+  orderData: [],
+  billData: [],
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -85,6 +93,42 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         isBill: !state.isBill,
+      };
+    case GET_ORDER_DATA_REQUEST:
+      return {
+        ...state,
+        isloading: true,
+      };
+
+    case GET_ORDER_DATA_SUCCESS:
+      return {
+        ...state,
+        orderData: payload,
+        isloading: false,
+      };
+
+    case GET_ORDER_DATA_FAILURE:
+      return {
+        ...state,
+        isloading: false,
+      };
+    case GET_BILLS_REQUEST:
+      return {
+        ...state,
+        isloading: true,
+      };
+
+    case GET_BILLS_SUCCESS:
+      return {
+        ...state,
+        billData: payload,
+        isloading: false,
+      };
+
+    case GET_BILLS_FAILURE:
+      return {
+        ...state,
+        isloading: false,
       };
     default:
       return state;
