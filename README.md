@@ -34,5 +34,11 @@ description: Basic POS application for small scale Business
 
 ### Overview of POS Application:
 
-![Alt Text](.gitbook/assets/42r49j.gif) ![Alt Text](.gitbook/assets/42r4gh.gif) ![Alt Text](.gitbook/assets/42r4kq.gif)
+  
+
+![Alt Text](.gitbook/assets/42r4kq.gif)
+
+![Alt Text](.gitbook/assets/42r4gh.gif)
+
+![Alt Text](.gitbook/assets/42r49j.gif)
 
