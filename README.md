@@ -32,7 +32,7 @@ description: Basic POS application for small scale Business
 | :--- | :--- | :--- | :--- |
 | Lentils | dal | 200 | 2000 |
 
-### Overview of POS Application:
+## Overview of POS Application:
 
   
 
