@@ -16,6 +16,7 @@ description: Basic POS application for small scale Business
 * [ ] add notifications'
 * [ ] sorting,filtering
 * [ ] pagination
+*
 
 
 
