@@ -1,28 +1,37 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import NavBar from "../Components/NavBar";
-import Stats from "./Stats";
-import Stocks from "./Stocks";
-import Order from "./Order";
-import DashBoard from "./DashBoard";
+import { useEffect } from "react";
+import { useHistory, Redirect } from "react-router-dom";
+import { checkAuth } from "../Redux/Auth/actions";
+import RoutesLogin from "./LoginRoutes/RoutesLogin";
 
 const Routes = (props) => {
-  return (
-    <div>
-      <NavBar />
-      <Switch>
-        <Route path="/" exact render={(props) => <DashBoard {...props} />} />
-        <Route path="/stats" exact render={(props) => <Stats {...props} />} />
-        <Route path="/stocks" exact render={(props) => <Stocks {...props} />} />
-        <Route path="/order" exact render={(props) => <Order {...props} />} />
-      </Switch>
-    </div>
+  const { role, isAuth, checkAuth, token } = props;
+  const history = useHistory();
+
+  useEffect(() => {
+    checkAuth(token);
+  }, [token]);
+
+  return isAuth && role === "admin" ? (
+    <div>admin</div>
+  ) : isAuth && role === "vendor" ? (
+    <div>vendor</div>
+  ) : isAuth && role === "employee" ? (
+    <div>employee</div>
+  ) : (
+    <Redirect to="/login" />
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+  token: state.auth.token,
+  role: state.auth.role,
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+  checkAuth: (payload) => dispatch(checkAuth(payload)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Routes);
