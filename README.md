@@ -37,9 +37,3 @@ description: Basic POS application for small scale Business
 
   
 
-![Alt Text](.gitbook/assets/42r4kq.gif)
-
-![Alt Text](.gitbook/assets/42r4gh.gif)
-
-![Alt Text](.gitbook/assets/42r49j.gif)
-
