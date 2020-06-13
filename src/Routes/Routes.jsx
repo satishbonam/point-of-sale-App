@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import { checkAuth } from "../Redux/Auth/actions";
 import RoutesLogin from "./LoginRoutes/RoutesLogin";
+import RoutesAdmin from "./AdminRoutes/RoutesAdmin";
+import RoutesEmployee from "./EmployeeRoutes/RoutesEmployee";
+import RoutesVendor from "./VendorRoutes/RoutesVendor";
 
 const Routes = (props) => {
   const { role, isAuth, checkAuth, token } = props;
@@ -14,13 +17,16 @@ const Routes = (props) => {
   }, [token]);
 
   return isAuth && role === "admin" ? (
-    <div>admin</div>
+    <RoutesAdmin />
   ) : isAuth && role === "vendor" ? (
-    <div>vendor</div>
+    <RoutesVendor />
   ) : isAuth && role === "employee" ? (
-    <div>employee</div>
+    <RoutesEmployee />
   ) : (
-    <Redirect to="/login" />
+    <>
+      <RoutesLogin />
+      <Redirect to="/login" />
+    </>
   );
 };
 
