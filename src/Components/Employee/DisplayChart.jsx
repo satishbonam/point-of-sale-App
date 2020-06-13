@@ -13,7 +13,7 @@ const DisplayChart = (props) => {
   }, []);
   const chartOptions = {
     xAxis: {
-      categories: billData && billData.y,
+      categories: billData["x_axis"],
     },
     yAxis: {
       title: {
@@ -23,7 +23,7 @@ const DisplayChart = (props) => {
     title: {
       text: "Today Bussiness",
     },
-    series: [{ data: billData && billData.x, name: "Today Sale" }],
+    series: [{ data: billData["y_axis"], name: "Today Sale" }],
     plotOptions: {
       series: {
         point: {
@@ -40,7 +40,6 @@ const DisplayChart = (props) => {
   return (
     <div>
       <HighchartsReact highcharts={Highcharts} options={chartOptions} />
-      {/* <button onClick={updateSeries}>Update Series</button> */}
     </div>
   );
 };
