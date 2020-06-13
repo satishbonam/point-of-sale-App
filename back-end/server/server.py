@@ -36,7 +36,7 @@ def login():
         data.append(row)
 
     if data:
-        payload = {'username': email, 'message': 'logged_in','expires':time.time()+10000000000000}
+        payload = {'username': email, 'message': 'logged_in','expires':time.time()+100000000}
         key = 'secret'
 
         encode_jwt = jwt.encode(payload, key)
@@ -61,9 +61,10 @@ def check_login():
 
 @app.route("/employee/get_stocks")
 def get_stocks():
-    
+    page = request.args.get('page',type=int)
+    per_page=request.args.get('per_page',type=int)
     cur = mysql.connection.cursor()
-    cur.execute('''SELECT id,title,price,stock,status FROM stocks LIMIT 0,10;''')
+    cur.execute('''SELECT id,title,price,stock,status FROM stocks LIMIT %d,%d;'''%(page*per_page,per_page))
     result = cur.fetchall()
     data = []
     for row in result:
@@ -79,6 +80,7 @@ def generate_bill():
     for item in bill_items:
         cur = mysql.connection.cursor()
         cur.execute('''UPDATE stocks SET stock="%d" WHERE id="%d"''' % (item[3], item[0]))
+        cur.execute('''UPDATE stocks SET status="%s" WHERE stock<="%d"''' % ("ordered", 10))
         mysql.connection.commit()
         cur.close()
     
@@ -88,3 +90,27 @@ def generate_bill():
     cur1.close()
 
     return json.dumps(bill_items)
+
+@app.route("/bills")
+def get_bills():
+    cur = mysql.connection.cursor()
+    cur.execute('''SELECT amount,HOUR(generated_at),MINUTE(generated_at) FROM bills''')
+    result = cur.fetchall()
+    x_axis = []
+    y_axis=[]
+    for row in result:
+        x_axis.append(str(row[1]) + ":" + str(row[2]))
+        y_axis.append(row[0])
+
+    return json.dumps({"x_axis":x_axis,"y_axis":y_axis})
+
+
+# @app.route('/logout',methods=['POST'])
+# def logout():
+#     token = request.json["auth_token"]
+#     decode_jwt = jwt.decode(token,"secret")
+  
+#     decode_jwt['expires']= time.time()
+#     return {"message":"logout success"}
+      
+
