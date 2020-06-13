@@ -28,6 +28,7 @@ const initialState = {
 };
 
 export default (state = initialState, { type, payload }) => {
+  console.log(payload);
   switch (type) {
     case GET_DATA_REQUEST:
       return {

@@ -5,6 +5,10 @@ import {
   CHECK_AUTH_FAILURE,
   CHECK_AUTH_REQUEST,
   CHECK_AUTH_SUCCESS,
+  LOGOUT,
+  LOGOUT_SUCCESS,
+  LOGOUT_REQUEST,
+  LOGOUT_FAILURE,
 } from "./actionTypes";
 import { loadData } from "./localStorage";
 
@@ -55,6 +59,33 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         isloading: false,
       };
+    case LOGOUT:
+      return {
+        ...state,
+        isAuth: false,
+        token: "",
+        role: "",
+        isloading: false,
+      };
+    // case LOGOUT_REQUEST:
+    //   return {
+    //     ...state,
+    //     isloading: true,
+    //   };
+
+    // case LOGOUT_SUCCESS:
+    //   return {
+    //     ...state,
+    //     isAuth: false,
+    //     token: "",
+    //     isloading: false,
+    //   };
+
+    // case LOGOUT_FAILURE:
+    //   return {
+    //     ...state,
+    //     isloading: false,
+    //   };
     default:
       return state;
   }

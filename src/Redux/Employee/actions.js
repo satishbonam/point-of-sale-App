@@ -34,10 +34,15 @@ export const getDataFailure = (payload) => ({
 });
 
 export const getData = (payload) => (dispatch) => {
+  console.log(payload);
   dispatch(getDataRequest());
   return axios({
     url: "http://127.0.0.1:5000/employee/get_stocks",
     method: "get",
+    params: {
+      per_page: payload.per_page,
+      page: payload.page,
+    },
   })
     .then((res) => dispatch(getDataSuccess(res.data)))
     .catch((err) => dispatch(getDataFailure(err)));

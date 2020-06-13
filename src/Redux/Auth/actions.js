@@ -5,6 +5,10 @@ import {
   CHECK_AUTH_FAILURE,
   CHECK_AUTH_REQUEST,
   CHECK_AUTH_SUCCESS,
+  LOGOUT,
+  LOGOUT_FAILURE,
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
 } from "./actionTypes";
 import axios from "axios";
 
@@ -60,3 +64,34 @@ export const checkAuth = (payload) => (dispatch) => {
     .then((res) => dispatch(checkAuthSuccess(res.data)))
     .catch((err) => dispatch(checkAuthFailure(err)));
 };
+
+export const logout = (payload) => ({
+  type: LOGOUT,
+  payload,
+});
+
+// export const logoutRequest = (payload) => ({
+//   type: LOGOUT_REQUEST,
+//   payload,
+// });
+
+// export const logoutSuccess = (payload) => ({
+//   type: LOGOUT_SUCCESS,
+//   payload,
+// });
+
+// export const logoutFailure = (payload) => ({
+//   type: LOGOUT_FAILURE,
+//   payload,
+// });
+
+// export const logout = (payload) => (dispatch) => {
+//   dispatch(logoutRequest());
+//   return axios({
+//     url: "http://127.0.0.1:5000/checklogin",
+//     method: "post",
+//     data: payload,
+//   })
+//     .then((res) => dispatch(logoutSuccess(res)))
+//     .catch((err) => dispatch(logoutFailure(err)));
+// };
