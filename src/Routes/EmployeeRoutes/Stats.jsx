@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import DisplayChart from "../../Components/DisplayChart";
+import DisplayChart from "../../Components/Employee/DisplayChart";
 
 const Stats = () => {
   return (

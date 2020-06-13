@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Paper, Grid, makeStyles } from "@material-ui/core";
-import Billing from "../../Components/Billing";
-import Products from "../../Components/Products";
-import { getData } from "../../Redux/reducer/actions";
+import Billing from "../../Components/Employee/Billing";
+import Products from "../../Components/Employee/Products";
+import { getData } from "../../Redux/Employee/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +34,7 @@ const DashBoard = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  data: state.reducer.data,
+  data: state.employee.data,
 });
 
 const mapDispatchToProps = (dispatch) => ({

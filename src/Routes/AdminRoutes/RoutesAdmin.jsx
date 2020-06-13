@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import NavBar from "../../Components/NavBar";
+import NavBar from "../../Components/Employee/NavBar";
 import Stats from "../EmployeeRoutes/Stats";
 
 const RoutesAdmin = (props) => {

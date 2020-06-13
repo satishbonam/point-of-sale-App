@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import NavBar from "../../Components/NavBar";
+import NavBar from "../../Components/Employee/NavBar";
 import Stats from "./Stats";
 import Stocks from "./Stocks";
 import Order from "./Order";

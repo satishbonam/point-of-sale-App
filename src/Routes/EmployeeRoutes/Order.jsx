@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import DisplayTable from "../../Components/common/DisplayTable";
-import { getOderData } from "../../Redux/reducer/actions";
+import { getOderData } from "../../Redux/Employee/actions";
 
 const Order = (props) => {
   const { orderData, getOrderData } = props;
@@ -16,7 +16,7 @@ const Order = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  orderData: state.reducer.orderData,
+  orderData: state.employee.orderData,
 });
 
 const mapDispatchToProps = (dispatch) => ({

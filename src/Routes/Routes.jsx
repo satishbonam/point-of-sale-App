@@ -13,7 +13,7 @@ const Routes = (props) => {
   const history = useHistory();
 
   useEffect(() => {
-    checkAuth(token);
+    checkAuth({ auth_token: token });
   }, [token]);
 
   return isAuth && role === "admin" ? (
