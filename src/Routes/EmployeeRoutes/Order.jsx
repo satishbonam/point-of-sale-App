@@ -4,10 +4,9 @@ import DisplayTable from "../../Components/common/DisplayTable";
 import { getOderData } from "../../Redux/Employee/actions";
 
 const Order = (props) => {
-  const { orderData, getOrderData } = props;
-  useEffect(() => {
-    getOrderData();
-  }, []);
+  const { data } = props;
+  const orderData = data.filter((item) => item[4] !== "delivered");
+  console.log(orderData);
   return (
     <div>
       <DisplayTable rows={orderData} />
@@ -16,11 +15,9 @@ const Order = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  orderData: state.employee.orderData,
+  data: state.employee.data,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  getOrderData: (payload) => dispatch(getOderData(payload)),
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order);

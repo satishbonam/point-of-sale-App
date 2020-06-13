@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Paper, Grid, makeStyles } from "@material-ui/core";
 import Billing from "../../Components/Employee/Billing";
 import Products from "../../Components/Employee/Products";
-import { getData } from "../../Redux/Employee/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,11 +12,6 @@ const useStyles = makeStyles((theme) => ({
 
 const DashBoard = (props) => {
   const classes = useStyles();
-  const { getData, data } = props;
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <div className={classes.root}>
@@ -33,12 +27,8 @@ const DashBoard = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  data: state.employee.data,
-});
+const mapStateToProps = (state) => ({});
 
-const mapDispatchToProps = (dispatch) => ({
-  getData: (payload) => dispatch(getData(payload)),
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashBoard);

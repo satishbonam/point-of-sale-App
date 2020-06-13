@@ -29,7 +29,11 @@ const SelectQty = (props) => {
 
   let selectItems = [];
   for (let i = 1; i <= 10; i++) {
-    selectItems.push(<MenuItem value={i}>{i}</MenuItem>);
+    selectItems.push(
+      <MenuItem key={i} value={i}>
+        {i}
+      </MenuItem>
+    );
   }
 
   return (

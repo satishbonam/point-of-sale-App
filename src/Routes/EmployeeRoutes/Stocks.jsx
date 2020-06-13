@@ -5,9 +5,9 @@ import { getData } from "../../Redux/Employee/actions";
 
 const Stocks = (props) => {
   const { data, getData } = props;
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
   return (
     <div>
       <DisplayTable rows={data} />

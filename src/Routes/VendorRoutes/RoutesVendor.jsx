@@ -1,23 +1,15 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import Stocks from "../EmployeeRoutes/Stocks";
 import Order from "../EmployeeRoutes/Order";
+import NavBar from "../../Components/Vendor/NavBar";
 
 const Routes = (props) => {
   return (
     <div>
+      <NavBar />
       <Switch>
-        <Route
-          path="/vendor/stocks"
-          exact
-          render={(props) => <Stocks {...props} />}
-        />
-        <Route
-          path="/vendor/order"
-          exact
-          render={(props) => <Order {...props} />}
-        />
+        <Route path="/vendor" exact render={(props) => <Order {...props} />} />
         <Route path="" render={() => <Redirect to="/vendor" />} />
       </Switch>
     </div>
