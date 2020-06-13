@@ -6,8 +6,9 @@ import {
   CHECK_AUTH_REQUEST,
   CHECK_AUTH_SUCCESS,
 } from "./actionTypes";
+import { loadData } from "./localStorage";
 
-const initialState = {
+const initialState = loadData("auth") || {
   isAuth: false,
   token: "",
   isLoading: false,
@@ -15,6 +16,7 @@ const initialState = {
 };
 
 export default (state = initialState, { type, payload }) => {
+  console.log(payload);
   switch (type) {
     case LOGIN_USER_REQUEST:
       return {
@@ -25,6 +27,9 @@ export default (state = initialState, { type, payload }) => {
     case LOGIN_USER_SUCCESS:
       return {
         ...state,
+        isAuth: true,
+        token: payload.auth_token,
+        role: payload.role,
         isloading: false,
       };
 
@@ -42,6 +47,7 @@ export default (state = initialState, { type, payload }) => {
     case CHECK_AUTH_SUCCESS:
       return {
         ...state,
+        isAuth: payload.auth_token == "valid" ? true : false,
         isloading: false,
       };
 

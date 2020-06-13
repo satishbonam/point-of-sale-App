@@ -24,12 +24,14 @@ export const loginUserFailure = (payload) => ({
 });
 
 export const loginUser = (payload) => (dispatch) => {
+  console.log(payload);
   dispatch(loginUserRequest());
   return axios({
-    url: "",
-    method: "",
+    url: "http://127.0.0.1:5000/login",
+    method: "post",
+    data: payload,
   })
-    .then((res) => dispatch(loginUserSuccess(res)))
+    .then((res) => dispatch(loginUserSuccess(res.data)))
     .catch((err) => dispatch(loginUserFailure(err)));
 };
 
@@ -51,9 +53,10 @@ export const checkAuthFailure = (payload) => ({
 export const checkAuth = (payload) => (dispatch) => {
   dispatch(checkAuthRequest());
   return axios({
-    url: "",
-    method: "",
+    url: "http://127.0.0.1:5000/checklogin",
+    method: "post",
+    data: payload,
   })
-    .then((res) => dispatch(checkAuthSuccess(res)))
+    .then((res) => dispatch(checkAuthSuccess(res.data)))
     .catch((err) => dispatch(checkAuthFailure(err)));
 };
