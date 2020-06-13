@@ -59,7 +59,7 @@ const ItemCard = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  isBill: state.reducer.isBill,
+  isBill: state.employee.isBill,
 });
 
 const mapDispatchToProps = {};
