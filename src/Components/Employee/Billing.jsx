@@ -23,7 +23,7 @@ const Billing = (props) => {
     generateBill([billItems, totalBill]);
     setTimeout(() => {
       changeBillStatus();
-      // document.location.reload();
+      document.location.reload();
       alert("Bill Generated");
     }, 50);
   };
