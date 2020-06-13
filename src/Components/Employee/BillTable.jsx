@@ -33,15 +33,15 @@ const BillTable = (props) => {
         </TableHead>
         <TableBody>
           {billItems.map((row) => (
-            <TableRow key={row.item}>
+            <TableRow key={row[0]}>
               <TableCell component="th" scope="row">
-                {row.item}
+                {row[1]}
               </TableCell>
-              <TableCell align="right">{row.price}</TableCell>
+              <TableCell align="right">{row[2]}</TableCell>
               <TableCell align="right">
-                <SelectQty item={row} quantity={row.quantity} />
+                <SelectQty item={row} quantity={row[5]} />
               </TableCell>
-              <TableCell align="right">{row.total}</TableCell>
+              <TableCell align="right">{row[6]}</TableCell>
             </TableRow>
           ))}
           <TableRow>

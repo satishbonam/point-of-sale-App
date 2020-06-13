@@ -26,14 +26,12 @@ const Products = (props) => {
           return (
             <ItemCard
               key={uuidv4()}
-              name={item.item}
-              price={item.price}
-              qty={item.quantity}
+              name={item[1]}
+              price={item[2]}
               onClick={() => {
-                addToBill({
-                  ...item,
-                  total: Number(item.quantity) * Number(item.price),
-                });
+                item[3] > 0 &&
+                  addToBill([...item, Number(item[5]) * Number(item[2])]);
+                item[3]--;
                 setTimeout(() => {
                   calTotalBill();
                 }, 10);

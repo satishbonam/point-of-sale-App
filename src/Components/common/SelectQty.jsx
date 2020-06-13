@@ -18,16 +18,17 @@ const SelectQty = (props) => {
   const classes = useStyles();
   const { quantity, item, changeQuantity, calTotalBill } = props;
   const [qty, setQty] = React.useState(Number(quantity));
+
   const handleChange = (event) => {
     setQty(event.target.value);
-    changeQuantity({ item: item.item, quantity: event.target.value });
+    changeQuantity([item[1], event.target.value]);
     setTimeout(() => {
       calTotalBill();
     }, 10);
   };
 
   let selectItems = [];
-  for (let i = 1; i <= 20; i++) {
+  for (let i = 1; i <= 10; i++) {
     selectItems.push(<MenuItem value={i}>{i}</MenuItem>);
   }
 

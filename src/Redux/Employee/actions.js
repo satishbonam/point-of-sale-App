@@ -36,7 +36,7 @@ export const getDataFailure = (payload) => ({
 export const getData = (payload) => (dispatch) => {
   dispatch(getDataRequest());
   return axios({
-    url: "http://127.0.0.1:5000/get_stocks",
+    url: "http://127.0.0.1:5000/employee/get_stocks",
     method: "get",
   })
     .then((res) => dispatch(getDataSuccess(res.data)))

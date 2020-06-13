@@ -35,7 +35,7 @@ def login():
         data.append(row)
 
     if data:
-        payload = {'username': email, 'message': 'logged_in','expires':time.time()+100}
+        payload = {'username': email, 'message': 'logged_in','expires':time.time()+10000000000000}
         key = 'secret'
 
         encode_jwt = jwt.encode(payload, key)
@@ -51,7 +51,7 @@ def check_login():
     token = request.json["auth_token"]
     decode_jwt = jwt.decode(token,"secret")
   
-    if decode_jwt.get('expires')<=time.time():
+    if decode_jwt.get('expires')>=time.time():
         return json.dumps({'auth_token': "valid",'expires':decode_jwt.get('expires'),'time':time.time()})
     else:
         return json.dumps({'auth_token': "invalid"})
@@ -62,10 +62,10 @@ def check_login():
 def get_stocks():
     
     cur = mysql.connection.cursor()
-    cur.execute('''SELECT * FROM stocks LIMIT 10,10;''')
+    cur.execute('''SELECT id,title,price,stock,status FROM stocks LIMIT 10,10;''')
     result = cur.fetchall()
     data = []
     for row in result:
-        data.append(row)
+        data.append(row+(1,))
 
-    return json.dumps({'data':data})
+    return json.dumps(data)

@@ -50,25 +50,25 @@ export default (state = initialState, { type, payload }) => {
     case ADD_TO_BILL:
       return {
         ...state,
+
         billItems: [...state.billItems, payload],
       };
     case CHANGE_QUANTITY:
       return {
         ...state,
-        billItems: state.billItems.map((item) =>
-          item.item === payload.item
-            ? {
-                ...item,
-                quantity: payload.quantity,
-                total: Number(item.price) * Number(payload.quantity),
-              }
-            : item
-        ),
+        billItems: state.billItems.map((item) => {
+          if (item[1] === payload[0]) {
+            item[5] = payload[1];
+            item[6] = item[5] * item[2];
+            item[3] -= item[5];
+          }
+          return item;
+        }),
       };
     case CAL_TOTAL:
       return {
         ...state,
-        totalBill: state.billItems.reduce((a, c) => (a += c.total), 0),
+        totalBill: state.billItems.reduce((a, c) => (a += c[6]), 0),
       };
     case GENERATE_BILL_REQUEST:
       return {

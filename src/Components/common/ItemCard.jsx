@@ -39,7 +39,6 @@ const ItemCard = (props) => {
     <Paper className={classes.root}>
       <Paper className={classes.detailsTitle}>{name}</Paper>
       <Paper className={classes.detailsPrice}>{`Rs: ${price}`}</Paper>
-      <Paper className={classes.detailsQty}>{`Qty: ${qty}`}</Paper>
       <Fab
         aria-label="add"
         size={"small"}
