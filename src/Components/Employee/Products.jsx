@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 const Products = (props) => {
   const classes = useStyles();
   const { data, addToBill, calTotalBill } = props;
+
   return (
     <Paper>
       <Title title="Products" />
