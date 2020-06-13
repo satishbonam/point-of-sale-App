@@ -5,7 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { connect } from "react-redux";
-import { changeQuantity, calTotalBill } from "../../Redux/reducer/actions";
+import { changeQuantity, calTotalBill } from "../../Redux/Employee/actions";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
