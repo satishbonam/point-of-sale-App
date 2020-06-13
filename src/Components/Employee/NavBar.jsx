@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import StorageIcon from "@material-ui/icons/Storage";
 import ListAltIcon from "@material-ui/icons/ListAlt";
+import { connect } from "react-redux";
+import { logout } from "../../Redux/Auth/actions";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -31,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = (props) => {
   const classes = useStyles();
-
+  const { logout } = props;
   return (
     <div className={classes.grow}>
       <AppBar position="static">
@@ -63,10 +65,26 @@ const NavBar = (props) => {
               </Link>
             </IconButton>
           </div>
+          <div className={classes.grow} />
+          <IconButton
+            color="inherit"
+            className={classes.navBtn}
+            onClick={() => {
+              logout();
+            }}
+          >
+            LogOut
+          </IconButton>
         </Toolbar>
       </AppBar>
     </div>
   );
 };
 
-export default NavBar;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  logout: (payload) => dispatch(logout(payload)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
