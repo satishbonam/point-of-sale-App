@@ -8,6 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { connect } from "react-redux";
+import Pagination from "./Pagination";
 
 const useStyles = makeStyles({
   table: {
@@ -30,17 +31,14 @@ const useStyles = makeStyles({
 const DisplayTable = (props) => {
   const classes = useStyles();
   const { rows = [] } = props;
-  rows.sort((a, b) => {
-    return Number(a.stocks) - Number(b.stocks);
-  });
 
   return (
     <TableContainer component={Paper} className={classes.paper}>
+      <Pagination />
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow className={classes.header}>
-            <TableCell className={classes.header}>Category</TableCell>
-            <TableCell align="right" className={classes.header}>
+            <TableCell align="left" className={classes.header}>
               Item
             </TableCell>
             <TableCell align="right" className={classes.header}>
@@ -49,17 +47,21 @@ const DisplayTable = (props) => {
             <TableCell align="right" className={classes.header}>
               Stock
             </TableCell>
+            <TableCell align="right" className={classes.header}>
+              Status
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.item}>
-              <TableCell align="left">{row.category}</TableCell>
-              <TableCell align="right">{row.item}</TableCell>
-              <TableCell align="right">{row.price}</TableCell>
-              <TableCell align="right">{row.stocks}</TableCell>
-            </TableRow>
-          ))}
+          {rows.length > 0 &&
+            rows.map((row) => (
+              <TableRow key={row[0]}>
+                <TableCell align="left">{row[1]}</TableCell>
+                <TableCell align="right">{row[2]}</TableCell>
+                <TableCell align="right">{row[3]}</TableCell>
+                <TableCell align="right">{row[4]}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
