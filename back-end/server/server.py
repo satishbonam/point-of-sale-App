@@ -5,6 +5,7 @@ from flask_mysqldb import MySQL
 import jwt
 import json
 import time
+import datetime
 
 
 
@@ -62,10 +63,28 @@ def check_login():
 def get_stocks():
     
     cur = mysql.connection.cursor()
-    cur.execute('''SELECT id,title,price,stock,status FROM stocks LIMIT 10,10;''')
+    cur.execute('''SELECT id,title,price,stock,status FROM stocks LIMIT 0,10;''')
     result = cur.fetchall()
     data = []
     for row in result:
         data.append(row+(1,))
 
     return json.dumps(data)
+
+@app.route("/employee/generate_bill",methods=['POST'])
+def generate_bill():
+    bill_items = request.json[0]
+    bill_amount = request.json[1]
+    
+    for item in bill_items:
+        cur = mysql.connection.cursor()
+        cur.execute('''UPDATE stocks SET stock="%d" WHERE id="%d"''' % (item[3], item[0]))
+        mysql.connection.commit()
+        cur.close()
+    
+    cur1 = mysql.connection.cursor()
+    cur1.execute('''INSERT INTO bills(amount,generated_at) values("%d","%s")''' % (bill_amount,datetime.datetime.now()))
+    mysql.connection.commit()
+    cur1.close()
+
+    return json.dumps(bill_items)

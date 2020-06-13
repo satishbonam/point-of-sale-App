@@ -77,6 +77,7 @@ export default (state = initialState, { type, payload }) => {
       };
 
     case GENERATE_BILL_SUCCESS:
+      console.log(payload.data);
       return {
         ...state,
         billItems: [],

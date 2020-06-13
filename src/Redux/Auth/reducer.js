@@ -16,7 +16,6 @@ const initialState = loadData("auth") || {
 };
 
 export default (state = initialState, { type, payload }) => {
-  console.log(payload);
   switch (type) {
     case LOGIN_USER_REQUEST:
       return {

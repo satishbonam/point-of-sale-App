@@ -5,7 +5,6 @@ import Title from "../common/Title";
 import BillTable from "./BillTable";
 import Alert from "@material-ui/lab/Alert";
 import { generateBill, changeBillStatus } from "../../Redux/Employee/actions";
-import { v4 as uuidv4 } from "uuid";
 
 const useStyles = makeStyles((theme) => ({}));
 
@@ -21,14 +20,10 @@ const Billing = (props) => {
 
   const handleBill = () => {
     changeBillStatus();
-    generateBill({
-      billItems: billItems,
-      amount: totalBill,
-      billNumber: uuidv4(),
-    });
+    generateBill([billItems, totalBill]);
     setTimeout(() => {
       changeBillStatus();
-      document.location.reload();
+      // document.location.reload();
       alert("Bill Generated");
     }, 50);
   };

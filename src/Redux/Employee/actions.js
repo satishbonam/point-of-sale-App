@@ -71,9 +71,10 @@ export const generateBillFailure = (payload) => ({
 });
 
 export const generateBill = (payload) => (dispatch) => {
+  console.log(payload);
   dispatch(generateBillRequest());
   return axios({
-    url: "http://127.0.0.1:5000/generatebill",
+    url: "http://127.0.0.1:5000/employee/generate_bill",
     method: "post",
     data: payload,
   })
