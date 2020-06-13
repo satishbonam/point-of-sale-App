@@ -1,9 +1,6 @@
 from flask_cors import CORS
 from flask import Flask
 from flask import request
-from blueprint_admin import admin
-from blueprint_employee import employee
-from blueprint_vendor import vendor
 from flask_mysqldb import MySQL
 import jwt
 import json
@@ -22,11 +19,9 @@ CORS(app)
 
 
 
-app.register_blueprint(admin, url_prefix="/admin")
-app.register_blueprint(employee,url_prefix="/employee") 
-app.register_blueprint(vendor,url_prefix="/vendor") 
 
-@app.route('/',methods=['POST'])
+
+@app.route('/login',methods=['POST'])
 def login():
     email = request.json["email"]
     password=request.json["password"]
@@ -40,22 +35,37 @@ def login():
         data.append(row)
 
     if data:
-        payload = {'username': email, 'message': 'logged_in','expires':time.time()+(60*60*1000)}
+        payload = {'username': email, 'message': 'logged_in','expires':time.time()+100}
         key = 'secret'
 
         encode_jwt = jwt.encode(payload, key)
 
-        return {'auth_token': encode_jwt.decode(), 'message': 'logged_in'}
+        return {'auth_token': encode_jwt.decode(), 'message': 'logged_in','role':role}
     else:
         return {'message': 'username or password incorrect'}
+
+
 
 @app.route('/checklogin',methods=['POST'])
 def check_login():
     token = request.json["auth_token"]
     decode_jwt = jwt.decode(token,"secret")
   
-    if decode_jwt.get('expires')>=time.time():
-        return json.dumps({'auth_token': "valid"})
+    if decode_jwt.get('expires')<=time.time():
+        return json.dumps({'auth_token': "valid",'expires':decode_jwt.get('expires'),'time':time.time()})
     else:
         return json.dumps({'auth_token': "invalid"})
 
+
+
+@app.route("/employee/get_stocks")
+def get_stocks():
+    
+    cur = mysql.connection.cursor()
+    cur.execute('''SELECT * FROM stocks LIMIT 10,10;''')
+    result = cur.fetchall()
+    data = []
+    for row in result:
+        data.append(row)
+
+    return json.dumps({'data':data})
