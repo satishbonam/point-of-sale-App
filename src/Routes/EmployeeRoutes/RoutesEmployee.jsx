@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import NavBar from "../../Components/NavBar";
 import Stats from "./Stats";
@@ -16,6 +16,7 @@ const RoutesEmployee = (props) => {
         <Route path="/stats" exact render={(props) => <Stats {...props} />} />
         <Route path="/stocks" exact render={(props) => <Stocks {...props} />} />
         <Route path="/order" exact render={(props) => <Order {...props} />} />
+        <Route path="" render={() => <Redirect to="/" />} />
       </Switch>
     </div>
   );
