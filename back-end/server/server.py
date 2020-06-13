@@ -5,6 +5,9 @@ from blueprint_admin import admin
 from blueprint_employee import employee
 from blueprint_vendor import vendor
 from flask_mysqldb import MySQL
+import jwt
+import json
+import time
 
 
 
@@ -23,13 +26,36 @@ app.register_blueprint(admin, url_prefix="/admin")
 app.register_blueprint(employee,url_prefix="/employee") 
 app.register_blueprint(vendor,url_prefix="/vendor") 
 
-@app.route('/')
+@app.route('/',methods=['POST'])
 def login():
+    email = request.json["email"]
+    password=request.json["password"]
+    role=request.json["role"]
+    
     cur = mysql.connection.cursor()
-    cur.execute('''SELECT * FROM auth;''')
+    cur.execute('''SELECT * FROM auth WHERE email="%s" AND password="%s" AND role="%s";'''%(email,password,role))
     result = cur.fetchall()
     data = []
     for row in result:
         data.append(row)
-    return {'data':data}
+
+    if data:
+        payload = {'username': email, 'message': 'logged_in','expires':time.time()+(60*60*1000)}
+        key = 'secret'
+
+        encode_jwt = jwt.encode(payload, key)
+
+        return {'auth_token': encode_jwt.decode(), 'message': 'logged_in'}
+    else:
+        return {'message': 'username or password incorrect'}
+
+@app.route('/checklogin',methods=['POST'])
+def check_login():
+    token = request.json["auth_token"]
+    decode_jwt = jwt.decode(token,"secret")
+  
+    if decode_jwt.get('expires')>=time.time():
+        return json.dumps({'auth_token': "valid"})
+    else:
+        return json.dumps({'auth_token': "invalid"})
 
