@@ -5,11 +5,9 @@ import Login from "./Login";
 
 const RoutesLogin = (props) => {
   return (
-    <div>
-      <Switch>
-        <Route path="/login" exact render={(props) => <Login {...props} />} />
-      </Switch>
-    </div>
+    <>
+      <Route path="/login" render={(props) => <Login {...props} />} />
+    </>
   );
 };
 
