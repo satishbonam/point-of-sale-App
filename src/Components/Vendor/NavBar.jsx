@@ -33,7 +33,7 @@ const NavBar = (props) => {
   const { logout } = props;
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <div>
             <IconButton color="inherit" className={classes.navBtn}>

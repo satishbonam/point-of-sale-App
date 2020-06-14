@@ -1,23 +1,42 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import DisplayTable from "../../Components/common/DisplayTable";
-import { getOderData } from "../../Redux/Employee/actions";
+import { getOrderData } from "../../Redux/Employee/actions";
+import Pagination from "../../Components/Vendor/Pagination";
+import TableContainer from "@material-ui/core/TableContainer";
+import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  paper: {
+    maxWidth: 1000,
+    margin: "auto",
+    marginTop: "50px",
+    overflow: "auto",
+  },
+});
 
 const Order = (props) => {
-  const { data } = props;
-  const orderData = data.filter((item) => item[4] !== "delivered");
-  console.log(orderData);
+  const classes = useStyles();
+
+  const { orderData, getOrderData } = props;
+
   return (
-    <div>
-      <DisplayTable rows={orderData} />
+    <div style={{ margin: "100px 50px 50px 50px" }}>
+      <TableContainer component={Paper} className={classes.paper}>
+        <DisplayTable rows={orderData} />
+        <Pagination apiCall={getOrderData} />
+      </TableContainer>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  data: state.employee.data,
+  orderData: state.employee.orderData,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  getOrderData: (payload) => dispatch(getOrderData(payload)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order);

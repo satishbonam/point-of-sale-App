@@ -15,6 +15,9 @@ import {
   GET_BILLS_FAILURE,
   GET_BILLS_REQUEST,
   GET_BILLS_SUCCESS,
+  GET_PRODUCTS_FAILURE,
+  GET_PRODUCTS_REQUEST,
+  GET_PRODUCTS_SUCCESS,
 } from "./actionTypes";
 import axios from "axios";
 
@@ -76,7 +79,6 @@ export const generateBillFailure = (payload) => ({
 });
 
 export const generateBill = (payload) => (dispatch) => {
-  console.log(payload);
   dispatch(generateBillRequest());
   return axios({
     url: "http://127.0.0.1:5000/employee/generate_bill",
@@ -106,11 +108,15 @@ export const getOrderDataFailure = (payload) => ({
   payload,
 });
 
-export const getOderData = (payload) => (dispatch) => {
+export const getOrderData = (payload) => (dispatch) => {
   dispatch(getOrderDataRequest());
   return axios({
-    url: "http://127.0.0.1:5000/order",
+    url: "http://127.0.0.1:5000/employee/get_orders",
     method: "get",
+    params: {
+      per_page: payload.per_page,
+      page: payload.page,
+    },
   })
     .then((res) => dispatch(getOrderDataSuccess(res.data)))
     .catch((err) => dispatch(getOrderDataFailure(err)));
@@ -138,4 +144,33 @@ export const getBills = (payload) => (dispatch) => {
   })
     .then((res) => dispatch(getBillsSuccess(res.data)))
     .catch((err) => dispatch(getBillsFailure(err)));
+};
+
+export const getProductsRequest = (payload) => ({
+  type: GET_PRODUCTS_REQUEST,
+  payload,
+});
+
+export const getProductsSuccess = (payload) => ({
+  type: GET_PRODUCTS_SUCCESS,
+  payload,
+});
+
+export const getProductsFailure = (payload) => ({
+  type: GET_PRODUCTS_FAILURE,
+  payload,
+});
+
+export const getProducts = (payload) => (dispatch) => {
+  dispatch(getProductsRequest());
+  return axios({
+    url: "http://127.0.0.1:5000/employee/get_products",
+    method: "get",
+    params: {
+      per_page: payload.per_page,
+      page: payload.page,
+    },
+  })
+    .then((res) => dispatch(getProductsSuccess(res.data)))
+    .catch((err) => dispatch(getProductsFailure(err)));
 };

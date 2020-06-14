@@ -15,6 +15,9 @@ import {
   GET_BILLS_FAILURE,
   GET_BILLS_REQUEST,
   GET_BILLS_SUCCESS,
+  GET_PRODUCTS_SUCCESS,
+  GET_PRODUCTS_REQUEST,
+  GET_PRODUCTS_FAILURE,
 } from "./actionTypes";
 
 const initialState = {
@@ -25,10 +28,10 @@ const initialState = {
   isloading: false,
   orderData: [],
   billData: [],
+  productsData: [],
 };
 
 export default (state = initialState, { type, payload }) => {
-  console.log(payload);
   switch (type) {
     case GET_DATA_REQUEST:
       return {
@@ -61,7 +64,6 @@ export default (state = initialState, { type, payload }) => {
           if (item[1] === payload[0]) {
             item[5] = payload[1];
             item[6] = item[5] * item[2];
-            item[3] -= item[5];
           }
           return item;
         }),
@@ -78,7 +80,6 @@ export default (state = initialState, { type, payload }) => {
       };
 
     case GENERATE_BILL_SUCCESS:
-      console.log(payload.data);
       return {
         ...state,
         billItems: [],
@@ -103,6 +104,7 @@ export default (state = initialState, { type, payload }) => {
       };
 
     case GET_ORDER_DATA_SUCCESS:
+      console.log(payload);
       return {
         ...state,
         orderData: payload,
@@ -128,6 +130,24 @@ export default (state = initialState, { type, payload }) => {
       };
 
     case GET_BILLS_FAILURE:
+      return {
+        ...state,
+        isloading: false,
+      };
+    case GET_PRODUCTS_REQUEST:
+      return {
+        ...state,
+        isloading: true,
+      };
+
+    case GET_PRODUCTS_SUCCESS:
+      return {
+        ...state,
+        productsData: payload,
+        isloading: false,
+      };
+
+    case GET_PRODUCTS_FAILURE:
       return {
         ...state,
         isloading: false,

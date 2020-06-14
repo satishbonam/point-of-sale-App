@@ -4,7 +4,7 @@ import DisplayChart from "../../Components/Employee/DisplayChart";
 
 const Stats = () => {
   return (
-    <div>
+    <div style={{ margin: "100px 50px 50px 50px" }}>
       <DisplayChart />
     </div>
   );

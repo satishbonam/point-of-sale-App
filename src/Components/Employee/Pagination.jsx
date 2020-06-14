@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from "react";
 import TablePagination from "@material-ui/core/TablePagination";
 import { connect } from "react-redux";
-import { getData } from "../../Redux/Employee/actions";
 
 const Pagination = (props) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const { getData } = props;
+  const { apiCall } = props;
 
   const handleChangePage = (event, newPage) => {
-    console.log(newPage);
     setPage(newPage);
-    getData({ per_page: rowsPerPage, page: newPage });
+    apiCall({ per_page: rowsPerPage, page: newPage });
   };
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-    getData({ per_page: parseInt(event.target.value, 10), page: 0 });
+    apiCall({ per_page: parseInt(event.target.value, 10), page: 0 });
   };
 
   useEffect(() => {
-    getData({ per_page: rowsPerPage, page: page });
+    apiCall({ per_page: rowsPerPage, page: page });
   }, []);
-
+  console.log(apiCall);
   return (
     <TablePagination
       component="div"
@@ -38,8 +36,6 @@ const Pagination = (props) => {
 
 const mapStateToProps = (state) => ({});
 
-const mapDispatchToProps = (dispatch) => ({
-  getData: (payload) => dispatch(getData(payload)),
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
