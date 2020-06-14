@@ -64,7 +64,33 @@ def get_stocks():
     page = request.args.get('page',type=int)
     per_page=request.args.get('per_page',type=int)
     cur = mysql.connection.cursor()
-    cur.execute('''SELECT id,title,price,stock,status FROM stocks LIMIT %d,%d;'''%(page*per_page,per_page))
+    cur.execute('''SELECT id,title,price,stock,status FROM stocks  LIMIT %d,%d;'''%(page*per_page,per_page))
+    result = cur.fetchall()
+    data = []
+    for row in result:
+        data.append(row+(1,))
+
+    return json.dumps(data)
+
+@app.route("/employee/get_products")
+def get_products():
+    page = request.args.get('page',type=int)
+    per_page=request.args.get('per_page',type=int)
+    cur = mysql.connection.cursor()
+    cur.execute('''SELECT id,title,price,stock,status FROM stocks WHERE stock>0  LIMIT %d,%d;'''%(page*per_page,per_page))
+    result = cur.fetchall()
+    data = []
+    for row in result:
+        data.append(row+(1,))
+
+    return json.dumps(data)
+
+@app.route("/employee/get_orders")
+def get_orders():
+    page = request.args.get('page',type=int)
+    per_page=request.args.get('per_page',type=int)
+    cur = mysql.connection.cursor()
+    cur.execute('''SELECT id,title,price,stock,status FROM stocks WHERE stock<=10 LIMIT %d,%d;'''%(page*per_page,per_page))
     result = cur.fetchall()
     data = []
     for row in result:
@@ -79,13 +105,13 @@ def generate_bill():
     
     for item in bill_items:
         cur = mysql.connection.cursor()
-        cur.execute('''UPDATE stocks SET stock="%d" WHERE id="%d"''' % (item[3], item[0]))
+        cur.execute('''UPDATE stocks SET stock="%d" WHERE id="%d"''' % (item[3]-item[5], item[0]))
         cur.execute('''UPDATE stocks SET status="%s" WHERE stock<="%d"''' % ("ordered", 10))
         mysql.connection.commit()
         cur.close()
     
     cur1 = mysql.connection.cursor()
-    cur1.execute('''INSERT INTO bills(amount,generated_at) values("%d","%s")''' % (bill_amount,datetime.datetime.now()))
+    cur1.execute('''INSERT INTO bills(amount,generated_time,generated_date) values("%d","%s","%s")''' % (bill_amount,datetime.datetime.now(),datetime.date.today()))
     mysql.connection.commit()
     cur1.close()
 
@@ -94,7 +120,7 @@ def generate_bill():
 @app.route("/bills")
 def get_bills():
     cur = mysql.connection.cursor()
-    cur.execute('''SELECT amount,HOUR(generated_at),MINUTE(generated_at) FROM bills''')
+    cur.execute('''SELECT amount,HOUR(generated_time),MINUTE(generated_time) FROM bills WHERE generated_date="%s"'''%(datetime.date.today()))
     result = cur.fetchall()
     x_axis = []
     y_axis=[]
