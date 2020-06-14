@@ -28,12 +28,22 @@ const SelectQty = (props) => {
   };
 
   let selectItems = [];
-  for (let i = 1; i <= 10; i++) {
-    selectItems.push(
-      <MenuItem key={i} value={i}>
-        {i}
-      </MenuItem>
-    );
+  if (item[3] >= 10) {
+    for (let i = 1; i <= 10; i++) {
+      selectItems.push(
+        <MenuItem key={i} value={i}>
+          {i}
+        </MenuItem>
+      );
+    }
+  } else if (item[3] < 10) {
+    for (let i = 1; i <= item[3]; i++) {
+      selectItems.push(
+        <MenuItem key={i} value={i}>
+          {i}
+        </MenuItem>
+      );
+    }
   }
 
   return (

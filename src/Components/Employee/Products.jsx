@@ -4,8 +4,12 @@ import { Paper, Grid, makeStyles } from "@material-ui/core";
 import Title from "../common/Title";
 import ItemCard from "../common/ItemCard";
 import { v4 as uuidv4 } from "uuid";
-import { addToBill, calTotalBill } from "../../Redux/Employee/actions";
-import Pagination from "../common/Pagination";
+import {
+  addToBill,
+  calTotalBill,
+  getProducts,
+} from "../../Redux/Employee/actions";
+import Pagination from "../Employee/Pagination";
 
 const useStyles = makeStyles((theme) => ({
   products: {
@@ -16,20 +20,21 @@ const useStyles = makeStyles((theme) => ({
 
 const Products = (props) => {
   const classes = useStyles();
-  const { data, addToBill, calTotalBill } = props;
+  const { productsData, addToBill, calTotalBill, getProducts } = props;
 
   return (
     <Paper>
       <Title title="Products" />
-      <Pagination />
+      <Pagination apiCall={getProducts} />
       <Grid container className={classes.products}>
-        {data.map((item) => {
+        {productsData.map((item) => {
           return (
             <ItemCard
               key={uuidv4()}
               name={item[1]}
               price={item[2]}
               onClick={() => {
+                item[3] == 0 && alert("Out of Stock");
                 item[3] > 0 &&
                   addToBill([...item, Number(item[5]) * Number(item[2])]);
                 item[3]--;
@@ -46,12 +51,13 @@ const Products = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  data: state.employee.data,
+  productsData: state.employee.productsData,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addToBill: (payload) => dispatch(addToBill(payload)),
   calTotalBill: (payload) => dispatch(calTotalBill(payload)),
+  getProducts: (payload) => dispatch(getProducts(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

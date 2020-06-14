@@ -14,7 +14,7 @@ const DashBoard = (props) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ marginTop: "80px" }}>
       <Grid container>
         <Grid item={true} xs={4}>
           <Billing />
