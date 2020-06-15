@@ -12,11 +12,11 @@ For a retail bussiness their are employee's who does billing in shop,vendor's wh
 - [x] display all items on home page
 - [x] add items to cart
 - [x] checkout
+- [x] pagination
 - [ ] add payment interface
 - [ ] add notifications'
 - [ ] sorting,filtering
-- [ ] pagination
--
+
 
 ## Overview of POS Application:
 
