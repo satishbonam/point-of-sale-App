@@ -22,23 +22,23 @@ For a retail bussiness their are employee's who does billing in shop,vendor's wh
 
 1. User login has three roles(employee,vendor,admin)
 
-   ![N|Solid](https://imgur.com/FSh5A0K)
+   ![N|Solid](https://imgur.com/FSh5A0K.png)
 
 2) Employee can access sales dashboard,stats,stocks and orders.Only employee can generate bills.
 
-   ![N|Solid](https://imgur.com/RpyHSrv)
+   ![N|Solid](https://imgur.com/RpyHSrv.png)
 
 3. Visualization of present day bills and bussiness flow.(only employee and admin can access)
 
-   ![N|Solid](https://imgur.com/8zEglPO)
+   ![N|Solid](https://imgur.com/8zEglPO.png)
 
 4. Vendor can access orders for the stocks.As soon as stock is below certain quantity,that stock is automated for order for the corresponding vendor.
 
-   ![N|Solid](https://imgur.com/lagh4BV)
+   ![N|Solid](https://imgur.com/lagh4BV.png)
 
 5. All the stocks can be viewed here.
 
-   ![N|Solid](https://imgur.com/oMMY4Gf)
+   ![N|Solid](https://imgur.com/oMMY4Gf.png)
 
 ## Api-Back-End
 
