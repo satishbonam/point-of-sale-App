@@ -40,7 +40,7 @@ export const getData = (payload) => (dispatch) => {
   console.log(payload);
   dispatch(getDataRequest());
   return axios({
-    url: "http://127.0.0.1:5000/employee/get_stocks",
+    url: "https://pos-server.satishbonam.tech/employee/get_stocks",
     method: "get",
     params: {
       per_page: payload.per_page,
@@ -81,7 +81,7 @@ export const generateBillFailure = (payload) => ({
 export const generateBill = (payload) => (dispatch) => {
   dispatch(generateBillRequest());
   return axios({
-    url: "http://127.0.0.1:5000/employee/generate_bill",
+    url: "https://pos-server.satishbonam.tech/employee/generate_bill",
     method: "post",
     data: payload,
   })
@@ -111,7 +111,7 @@ export const getOrderDataFailure = (payload) => ({
 export const getOrderData = (payload) => (dispatch) => {
   dispatch(getOrderDataRequest());
   return axios({
-    url: "http://127.0.0.1:5000/employee/get_orders",
+    url: "https://pos-server.satishbonam.tech/employee/get_orders",
     method: "get",
     params: {
       per_page: payload.per_page,
@@ -139,7 +139,7 @@ export const getBillsFailure = (payload) => ({
 export const getBills = (payload) => (dispatch) => {
   dispatch(getBillsRequest());
   return axios({
-    url: "http://127.0.0.1:5000/bills",
+    url: "https://pos-server.satishbonam.tech/bills",
     method: "get",
   })
     .then((res) => dispatch(getBillsSuccess(res.data)))
@@ -164,7 +164,7 @@ export const getProductsFailure = (payload) => ({
 export const getProducts = (payload) => (dispatch) => {
   dispatch(getProductsRequest());
   return axios({
-    url: "http://127.0.0.1:5000/employee/get_products",
+    url: "https://pos-server.satishbonam.tech/employee/get_products",
     method: "get",
     params: {
       per_page: payload.per_page,

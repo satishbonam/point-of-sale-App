@@ -17,7 +17,6 @@ For a retail bussiness their are employee's who does billing in shop,vendor's wh
 - [ ] add notifications'
 - [ ] sorting,filtering
 
-
 ## Overview of POS Application:
 
 1. User login has three roles(employee,vendor,admin)
@@ -40,15 +39,55 @@ For a retail bussiness their are employee's who does billing in shop,vendor's wh
 
    ![N|Solid](https://imgur.com/oMMY4Gf.png)
 
-## Api-Back-End
+## About The Project
 
-### categories:
+### Built With
 
-- Lentils
-- Biscuits
-- Milk Products
-- other-add category from front end
+- Frontend
+  - [React](https://reactjs.org/)
+  - [Redux](https://redux.js.org/)
+  - [Bootstrap](https://getbootstrap.com/)
+- Backend
+  - [Python](https://www.python.org/)
+  - [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+  - [MySQL](https://www.mysql.com/)
 
-| category | item | price | stock\(kg/items\) |
-| :------- | :--- | :---- | :---------------- |
-| Lentils  | dal  | 200   | 2000              |
+## Getting Started
+
+To get a local copy up and running follow these simple steps.
+
+### Prerequisites
+
+- npm
+
+```sh
+npm install npm@latest -g
+```
+
+- pip
+
+```sh
+sudo apt install python-pip
+sudo pip install virtualenv
+```
+
+### Installation
+
+1. Clone the repo
+
+```sh
+git clone https://github.com/satishbonam/point-of-sale-App.git
+```
+
+2. For Frontend,install NPM packages
+
+```sh
+npm install
+```
+
+3. For Backend,create virtual environment and install pip packages from requirements.txt
+
+```
+virtualenv venv
+pip install -r requirements.txt
+```

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Paper, Grid, makeStyles } from "@material-ui/core";
 import Billing from "../../Components/Employee/Billing";
 import Products from "../../Components/Employee/Products";
+import { checkAuth } from "../../Redux/Auth/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,6 +13,11 @@ const useStyles = makeStyles((theme) => ({
 
 const DashBoard = (props) => {
   const classes = useStyles();
+  const { checkAuth, token, isLoading } = props;
+
+  // useEffect(() => {
+  //   checkAuth({ auth_token: token });
+  // }, [token]);
 
   return (
     <div className={classes.root} style={{ marginTop: "80px" }}>
@@ -27,8 +33,13 @@ const DashBoard = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  token: state.auth.token,
+  isLoading: state.auth.isLoading,
+});
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  checkAuth: (payload) => dispatch(checkAuth(payload)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashBoard);

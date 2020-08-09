@@ -31,7 +31,7 @@ export const loginUser = (payload) => (dispatch) => {
   console.log(payload);
   dispatch(loginUserRequest());
   return axios({
-    url: "http://127.0.0.1:5000/login",
+    url: "https://pos-server.satishbonam.tech/login",
     method: "post",
     data: payload,
   })
@@ -57,7 +57,7 @@ export const checkAuthFailure = (payload) => ({
 export const checkAuth = (payload) => (dispatch) => {
   dispatch(checkAuthRequest());
   return axios({
-    url: "http://127.0.0.1:5000/checklogin",
+    url: "https://pos-server.satishbonam.tech/checklogin",
     method: "post",
     data: payload,
   })
@@ -88,7 +88,7 @@ export const logout = (payload) => ({
 // export const logout = (payload) => (dispatch) => {
 //   dispatch(logoutRequest());
 //   return axios({
-//     url: "http://127.0.0.1:5000/checklogin",
+//     url: "https://127.0.0.1:5000/checklogin",
 //     method: "post",
 //     data: payload,
 //   })
